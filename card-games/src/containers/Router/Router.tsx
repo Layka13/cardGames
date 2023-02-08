@@ -1,15 +1,13 @@
 import { HashRouter, Route, Routes } from "react-router-dom";
 import { v4 as uuid } from "uuid";
 
-import Stack from "../../components/cardCommon/stack/stack";
-
-interface Stack {}
+import Deck from "../../components/cardCommon/deck/deck";
 
 function Router(): JSX.Element {
   return (
     <HashRouter>
       <Routes>
-        <Route path="" element={<Stack />} key={uuid()} />
+        <Route path="" element={<Deck />} key={uuid()} />
       </Routes>
     </HashRouter>
   );
