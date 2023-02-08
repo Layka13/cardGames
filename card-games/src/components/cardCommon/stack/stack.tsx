@@ -1,10 +1,10 @@
-import { Heading } from "@nn-design-system/react-component-library";
+import { Card, Heading } from "@nn-design-system/react-component-library";
 
 function Stack(): JSX.Element {
   return (
-    <div>
-      <h1>test</h1>
-    </div>
+    <Card>
+      <Heading variant="Default">Current Stack</Heading>
+    </Card>
   );
 }
 

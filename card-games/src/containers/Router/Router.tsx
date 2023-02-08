@@ -3,6 +3,8 @@ import { v4 as uuid } from "uuid";
 
 import Stack from "../../components/cardCommon/stack/stack";
 
+interface Stack {}
+
 function Router(): JSX.Element {
   return (
     <HashRouter>
