@@ -1,5 +1,11 @@
-const Stack = () => {
-  return <h1>stack</h1>;
-};
+import { Heading } from "@nn-design-system/react-component-library";
 
-export default { Stack };
+function Stack(): JSX.Element {
+  return (
+    <div>
+      <h1>test</h1>
+    </div>
+  );
+}
+
+export default Stack;
