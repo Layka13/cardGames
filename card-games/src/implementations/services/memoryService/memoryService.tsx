@@ -2,7 +2,7 @@ import { MemoryCard } from "./memoryService.interface";
 import { DeckRepository } from "../../repository/deckRepository";
 import { Icard, Ideck } from "../../../interfaces/Icards";
 
-export class memoryService {
+export class MemoryService {
   public async getNewGame(): Promise<MemoryCard[]> {
     const deckRepository = new DeckRepository();
     const deck: Ideck = await deckRepository.getNewDeck(2);

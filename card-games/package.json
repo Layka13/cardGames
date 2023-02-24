@@ -35,7 +35,6 @@
   },
   "scripts": {
     "serve": "react-scripts start",
-    "start": "npm start",
     "test": "react-scripts test"
   },
   "eslintConfig": {
