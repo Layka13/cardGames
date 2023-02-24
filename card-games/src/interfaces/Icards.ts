@@ -6,14 +6,19 @@ export interface Ideck {
   cards?: Icard[];
 }
 
-enum SUITES {
+export interface DeckResponse {
+  response?: Ideck;
+  [key: string]: any;
+}
+
+export enum SUITES {
   "HEARTS",
   "SPADES",
   "CLUBS",
   "DIAMONDS",
 }
 
-enum VALUES {
+export enum VALUES {
   "one" = "1",
   "two" = "2",
   "three" = "3",

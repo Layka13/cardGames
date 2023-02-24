@@ -7,7 +7,7 @@ function Router(): JSX.Element {
   return (
     <HashRouter>
       <Routes>
-        <Route path="" element={<Deck />} key={uuid()} />
+        <Route path="/" element={<Deck />} key={uuid()} />
       </Routes>
     </HashRouter>
   );
