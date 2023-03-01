@@ -21,7 +21,7 @@ export default function Memory(): JSX.Element {
       {deck ? (
         <div>
           {deck.map((card) => {
-            <Memorycard card={card} />;
+            return <Memorycard card={card} />;
           })}
         </div>
       ) : (
