@@ -8,17 +8,25 @@ import { useStyles } from "./MemoryGame.style";
 export default function Memory(): JSX.Element {
   const classes = useStyles();
   const [deck, setDeck] = useState<MemoryCard[]>();
+  const memoryService = new MemoryService();
 
   useEffect(() => {
-    const memoryService = new MemoryService();
-
     async function fetchCards() {
       const cards: MemoryCard[] = await memoryService.getNewGame();
       setDeck(cards);
     }
-
     fetchCards();
   }, []);
+
+  function handleCardClick(id: string): void {
+    if (deck) {
+      const selectedId = deck?.findIndex((card) => card.id === id);
+      const newDeck = deck.slice();
+
+      newDeck[selectedId].isRightSideUp = !deck[selectedId].isRightSideUp;
+      setDeck(newDeck);
+    }
+  }
 
   return (
     <>
@@ -27,7 +35,7 @@ export default function Memory(): JSX.Element {
         {deck ? (
           <div className={classes.cardGrid}>
             {deck.map((card) => {
-              return <Memorycard card={card} />;
+              return <Memorycard card={card} onClick={handleCardClick} />;
             })}
           </div>
         ) : (

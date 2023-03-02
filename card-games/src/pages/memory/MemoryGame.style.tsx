@@ -11,5 +11,11 @@ export const useStyles = makeStyles({
   playingCardImage: {
     maxWidth: "100px",
     heigth: "auto",
+    userDrag: "none",
+    webkitUserDrag: "none",
+    userSelect: "none",
+    mozUserSelect: "none",
+    webkitUserSelect: "none",
+    msUserSelect: "none",
   },
 });

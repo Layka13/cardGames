@@ -5,16 +5,26 @@ import { backImage } from "../../MemoryGame.constants";
 
 interface MemoryCardProps {
   card: IMemoryCard;
+  onClick: Function;
 }
 
-export default function MemoryCard({ card }: MemoryCardProps): JSX.Element {
+export default function MemoryCard({
+  card,
+  onClick,
+}: MemoryCardProps): JSX.Element {
   const classes = useStyles();
   return (
-    <div className={classes.playingCard}>
+    <div
+      className={classes.playingCard}
+      onClick={() => {
+        console.log(card);
+        onClick(card.id);
+      }}
+    >
       <Card>
         <img
-          className={card.isRightSideUp ? classes.playingCardImage : backImage}
-          src={card.image}
+          className={classes.playingCardImage}
+          src={card.isRightSideUp ? card.image : backImage}
           alt={card.code}
         />
       </Card>
