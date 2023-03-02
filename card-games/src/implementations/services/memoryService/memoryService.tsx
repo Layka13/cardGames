@@ -8,7 +8,12 @@ export class MemoryService {
     const deck: Ideck = await deckRepository.getNewDeck(2);
     const cards: Icard[] = await deckRepository.drawCard(deck.deck_id, 104);
     return cards.map((card) => {
-      return { code: card.code, image: card.image, matched: false };
+      return {
+        code: card.code,
+        image: card.image,
+        matched: false,
+        isRightSideUp: false,
+      };
     });
   }
 
