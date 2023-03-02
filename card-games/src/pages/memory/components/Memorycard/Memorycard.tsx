@@ -13,17 +13,20 @@ export default function MemoryCard({
   onClick,
 }: MemoryCardProps): JSX.Element {
   const classes = useStyles();
+
   return (
     <div
       className={classes.playingCard}
       onClick={() => {
         console.log(card);
-        onClick(card.id);
+        onClick(card);
       }}
     >
       <Card>
         <img
-          className={classes.playingCardImage}
+          className={
+            card.matched ? classes.playingCardMatched : classes.playingCardImage
+          }
           src={card.isRightSideUp ? card.image : backImage}
           alt={card.code}
         />

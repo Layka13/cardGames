@@ -1,9 +1,15 @@
 import { Heading } from "@nn-design-system/react-component-library";
-import { useEffect, useState } from "react";
+import { memo, useEffect, useState } from "react";
 import { MemoryService } from "../../implementations/services/memoryService/memoryService";
 import { MemoryCard } from "../../implementations/services/memoryService/memoryService.interface";
 import Memorycard from "./components/Memorycard";
 import { useStyles } from "./MemoryGame.style";
+import {
+  checkIfCardsMatch,
+  setCardsAreFlippedToBack,
+  setCardsAreMatched,
+  updateDeck,
+} from "./MemoryGame.utils";
 
 export default function Memory(): JSX.Element {
   const classes = useStyles();
@@ -14,17 +20,32 @@ export default function Memory(): JSX.Element {
     async function fetchCards() {
       const cards: MemoryCard[] = await memoryService.getNewGame();
       setDeck(cards);
+      const cardCodesArray = cards.map((card) => card.code);
+      console.log(cardCodesArray);
     }
     fetchCards();
   }, []);
 
-  function handleCardClick(id: string): void {
+  function handleCardClick(card: MemoryCard): void {
     if (deck) {
-      const selectedId = deck?.findIndex((card) => card.id === id);
-      const newDeck = deck.slice();
+      card.isRightSideUp = true;
+      setDeck(updateDeck([card], deck));
+      const flippedCards = deck.filter(
+        (card) => card.isRightSideUp === true && card.matched === false,
+      );
 
-      newDeck[selectedId].isRightSideUp = !deck[selectedId].isRightSideUp;
-      setDeck(newDeck);
+      if (flippedCards.length === 2) {
+        console.log("Check matched");
+        if (checkIfCardsMatch(flippedCards)) {
+          setDeck(setCardsAreMatched(flippedCards, deck));
+        } else {
+          setTimeout(() => {
+            setDeck(setCardsAreFlippedToBack(flippedCards, deck));
+          }, 500);
+        }
+      } else if (flippedCards.length > 2) {
+        setDeck(setCardsAreFlippedToBack(flippedCards, deck));
+      }
     }
   }
 

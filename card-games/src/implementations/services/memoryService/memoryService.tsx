@@ -18,8 +18,4 @@ export class MemoryService {
       };
     });
   }
-
-  public isSameCard(one: MemoryCard, two: MemoryCard): boolean {
-    return one.code === two.code;
-  }
 }

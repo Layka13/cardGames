@@ -18,4 +18,15 @@ export const useStyles = makeStyles({
     webkitUserSelect: "none",
     msUserSelect: "none",
   },
+  playingCardMatched: {
+    opacity: "0.5",
+    maxWidth: "100px",
+    heigth: "auto",
+    userDrag: "none",
+    webkitUserDrag: "none",
+    userSelect: "none",
+    mozUserSelect: "none",
+    webkitUserSelect: "none",
+    msUserSelect: "none",
+  },
 });
