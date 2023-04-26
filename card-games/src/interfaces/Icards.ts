@@ -1,16 +1,3 @@
-export interface Ideck {
-  succes: boolean;
-  deck_id: string;
-  shuffled: true;
-  remaining: number;
-  cards?: Icard[];
-}
-
-export interface DeckResponse {
-  response?: Ideck;
-  [key: string]: any;
-}
-
 export enum SUITES {
   "HEARTS",
   "SPADES",
@@ -45,3 +32,5 @@ export interface Icard {
   value: VALUES;
   suit: SUITES;
 }
+
+export const backImage = "https://deckofcardsapi.com/static/img/back.png";
