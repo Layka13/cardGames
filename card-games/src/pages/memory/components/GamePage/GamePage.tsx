@@ -6,9 +6,10 @@ import { MemoryService } from "../../../../implementations/services/memoryServic
 import {
   cardsMatch,
   filterFlippedCards,
+  flipCardToFront,
+  flipOpenCardsToBack,
   setCardsAreFlippedToBack,
   setCardsMatched,
-  updateDeck,
 } from "../../MemoryGame.utils";
 import Memorycard from "../Memorycard";
 import { memorySettings } from "../../MemoryGame.interface";
@@ -33,35 +34,32 @@ export default function GamePage({
 
   function handleCardClick(card: MemoryCard): void {
     if (deck) {
-      card.isRightSideUp = true;
-      setDeck(updateDeck([card], deck));
       const flippedCards = filterFlippedCards(deck);
-
-      if (flippedCards.length === 2) {
+      if (flippedCards.length >= 2) {
         if (cardsMatch(flippedCards)) {
           setDeck(setCardsMatched(flippedCards, deck));
-        } else {
-          setTimeout(() => {
-            setDeck(setCardsAreFlippedToBack(flippedCards, deck));
-          }, 1000);
         }
-      } else if (flippedCards.length > 2) {
-        setDeck(setCardsAreFlippedToBack(flippedCards, deck));
+        setDeck(flipOpenCardsToBack(deck));
       }
+
+      setDeck(flipCardToFront(card, deck));
     }
   }
 
   return (
-    <div className={classes.cardGrid}>
-      {deck ? (
-        <div className={classes.cardGrid}>
-          {deck.map((card) => {
-            return <Memorycard card={card} onClick={handleCardClick} />;
-          })}
-        </div>
-      ) : (
-        <Heading variant="Large">"...Loading"</Heading>
-      )}
-    </div>
+    <>
+      <h3>difficulty: {memorySettings.difficulty} </h3>
+      <div className={classes.cardGrid}>
+        {deck ? (
+          <div className={classes.cardGrid}>
+            {deck.map((card) => {
+              return <Memorycard card={card} onClick={handleCardClick} />;
+            })}
+          </div>
+        ) : (
+          <Heading variant="Large">"...Loading"</Heading>
+        )}
+      </div>
+    </>
   );
 }

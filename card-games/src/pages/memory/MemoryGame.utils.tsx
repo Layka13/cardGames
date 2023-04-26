@@ -35,16 +35,35 @@ function setCardsAreFlippedToBack(
   return updateDeck(matchedCards, deck);
 }
 
+function flipCardToFront(card: MemoryCard, deck: MemoryCard[]): MemoryCard[] {
+  card.isRightSideUp = true;
+  return updateDeck([card], deck);
+}
+
+function flipOpenCardsToBack(deck: MemoryCard[]): MemoryCard[] {
+  const unmatchedCards = filterUnmatchedCards(deck);
+  const closedCards = unmatchedCards.map((card) => {
+    card.isRightSideUp = false;
+    return card;
+  });
+  return updateDeck(closedCards, deck);
+}
+
 function filterFlippedCards(deck: MemoryCard[]): MemoryCard[] {
   return deck.filter(
     (card) => card.isRightSideUp === true && card.matched === false,
   );
 }
 
+function filterUnmatchedCards(deck: MemoryCard[]): MemoryCard[] {
+  return deck.filter((card) => card.matched === false);
+}
+
 export {
   cardsMatch,
-  updateDeck,
   setCardsMatched,
   setCardsAreFlippedToBack,
   filterFlippedCards,
+  flipCardToFront,
+  flipOpenCardsToBack,
 };
