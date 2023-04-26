@@ -1,7 +1,7 @@
 import { Card } from "@nn-design-system/react-component-library";
 import { MemoryCard as IMemoryCard } from "../../../../implementations/services/memoryService/memoryService.interface";
 import { useStyles } from "../../MemoryGame.style";
-import { backImage } from "../../MemoryGame.constants";
+import { backImage } from "../../../../interfaces/Icards";
 
 interface MemoryCardProps {
   card: IMemoryCard;
