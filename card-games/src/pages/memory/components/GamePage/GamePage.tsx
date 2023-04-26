@@ -5,10 +5,9 @@ import { useEffect, useState } from "react";
 import { MemoryService } from "../../../../implementations/services/memoryService/memoryService";
 import {
   cardsMatch,
-  filterFlippedCards,
-  flipCardToFront,
-  flipOpenCardsToBack,
-  setCardsAreFlippedToBack,
+  filterOpenCards,
+  openCard,
+  closeOpenCards,
   setCardsMatched,
 } from "../../MemoryGame.utils";
 import Memorycard from "../Memorycard";
@@ -30,25 +29,24 @@ export default function GamePage({
       setDeck(await memoryService.getNewGame(memorySettings.difficulty));
     }
     fetchCards();
-  }, []);
+  }, [memorySettings]);
 
   function handleCardClick(card: MemoryCard): void {
     if (deck) {
-      const flippedCards = filterFlippedCards(deck);
+      const flippedCards = filterOpenCards(deck);
       if (flippedCards.length >= 2) {
         if (cardsMatch(flippedCards)) {
           setDeck(setCardsMatched(flippedCards, deck));
         }
-        setDeck(flipOpenCardsToBack(deck));
+        setDeck(closeOpenCards(deck));
       }
 
-      setDeck(flipCardToFront(card, deck));
+      setDeck(openCard(card, deck));
     }
   }
 
   return (
     <>
-      <h3>difficulty: {memorySettings.difficulty} </h3>
       <div className={classes.cardGrid}>
         {deck ? (
           <div className={classes.cardGrid}>
