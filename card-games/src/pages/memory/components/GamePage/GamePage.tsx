@@ -11,15 +11,22 @@ import {
   updateDeck,
 } from "../../MemoryGame.utils";
 import Memorycard from "../Memorycard";
+import { memorySettings } from "../../MemoryGame.interface";
 
-export default function GamePage(): JSX.Element {
+interface GamePageProps {
+  memorySettings: memorySettings;
+}
+
+export default function GamePage({
+  memorySettings,
+}: GamePageProps): JSX.Element {
   const classes = useStyles();
   const [deck, setDeck] = useState<MemoryCard[]>();
 
   useEffect(() => {
     const memoryService = new MemoryService();
     async function fetchCards() {
-      setDeck(await memoryService.getNewGame());
+      setDeck(await memoryService.getNewGame(memorySettings.difficulty));
     }
     fetchCards();
   }, []);

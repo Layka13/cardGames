@@ -2,16 +2,26 @@ import { Heading } from "@nn-design-system/react-component-library";
 import { useState } from "react";
 import GamePage from "./components/GamePage/GamePage";
 import StartPage from "./components/Startpage/StartPage";
+import { memorySettings } from "./MemoryGame.interface";
 
 export default function Memory(): JSX.Element {
   const [gameStarted, setGameStarted] = useState(false);
+
+  const [memorySettings, setMemorySettings] = useState<memorySettings>({
+    difficulty: 1,
+  });
+
   return (
     <>
       <Heading variant="XXLCentered">Memory</Heading>
       {gameStarted ? (
-        <GamePage />
+        <GamePage memorySettings={memorySettings} />
       ) : (
-        <StartPage setGameStarted={setGameStarted} />
+        <StartPage
+          setGameStarted={setGameStarted}
+          memorySettings={memorySettings}
+          setMemorySettings={setMemorySettings}
+        />
       )}
     </>
   );

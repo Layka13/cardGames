@@ -28,12 +28,19 @@ describe("get new deck", () => {
     const deck = await deckRepo.getPartialDeck(["0C", "0D", "0H", "0S"]);
     const cards = await deckRepo.drawCard(deck.deck_id, deck.remaining);
 
-    console.log(cards);
     expect(cards).toHaveLength(4);
     expect(cards).toContainObject({ code: "0C" });
     expect(cards).toContainObject({ code: "0D" });
     expect(cards).toContainObject({ code: "0H" });
     expect(cards).toContainObject({ code: "0S" });
+  });
+
+  it("should create a partial double deck with only aces", async () => {
+    const deckRepo = new DeckRepository();
+    const deck = await deckRepo.getPartialDeck(["0C", "0D", "0H", "0S"], 2);
+    const cards = await deckRepo.drawCard(deck.deck_id, deck.remaining);
+
+    expect(cards).toHaveLength(8);
   });
 });
 

@@ -20,12 +20,21 @@ export class DeckRepository {
     }
   }
 
-  public async getPartialDeck(cardCodes: string[]): Promise<any> {
+  public async getPartialDeck(
+    cardCodes: string[],
+    deckCount?: number,
+  ): Promise<any> {
     const cardsString = cardCodes.join(",");
+
+    const queryString = `cards=${cardsString}${
+      deckCount ? `&deck_count=${deckCount}` : ""
+    }`;
+
+    console.log(queryString);
 
     try {
       const data = await http<DeckResponse>(
-        `https://deckofcardsapi.com/api/deck/new/shuffle/?cards=${cardsString}`,
+        `https://deckofcardsapi.com/api/deck/new/shuffle/?${queryString}`,
       );
       return data;
     } catch (error) {
