@@ -4,8 +4,8 @@ import {
   Heading,
 } from "@nn-design-system/react-component-library";
 import { useState } from "react";
-import { Ideck } from "../../../interfaces/Icards";
 import { useStyles } from "./deck.style";
+import { Ideck } from "../../../interfaces/IDeck";
 
 function Deck(): JSX.Element {
   const classes = useStyles();

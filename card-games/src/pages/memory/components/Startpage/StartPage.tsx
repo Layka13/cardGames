@@ -15,9 +15,9 @@ export default function StartPage({
   }
 
   return (
-    <>
-      <Heading variant={"Large"}>Start new game</Heading>;
+    <div className={classes.startPage}>
+      <Heading variant={"Large"}>Start new game</Heading>
       <Button onClick={handleClick}>Start</Button>
-    </>
+    </div>
   );
 }

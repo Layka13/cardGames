@@ -23,6 +23,7 @@ export default function GamePage(): JSX.Element {
     }
     fetchCards();
   }, []);
+
   function handleCardClick(card: MemoryCard): void {
     if (deck) {
       card.isRightSideUp = true;

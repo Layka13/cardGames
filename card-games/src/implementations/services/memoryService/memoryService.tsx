@@ -1,6 +1,7 @@
 import { MemoryCard } from "./memoryService.interface";
 import { DeckRepository } from "../../repository/deckRepository";
-import { Icard, Ideck } from "../../../interfaces/Icards";
+import { Icard } from "../../../interfaces/Icards";
+import { Ideck } from "../../../interfaces/IDeck";
 import { nanoid } from "nanoid";
 
 export class MemoryService {

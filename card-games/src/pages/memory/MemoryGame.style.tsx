@@ -29,4 +29,8 @@ export const useStyles = makeStyles({
     webkitUserSelect: "none",
     msUserSelect: "none",
   },
+  startPage: {
+    display: "grid",
+    justifyContent: "center",
+  },
 });

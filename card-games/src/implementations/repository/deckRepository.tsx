@@ -1,4 +1,4 @@
-import { DeckResponse, Icard } from "../../interfaces/Icards";
+import { DeckResponse } from "../../interfaces/IDeck";
 import { http } from "../utils";
 // import fetch from "node-fetch";
 
