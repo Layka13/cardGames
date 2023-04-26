@@ -9,9 +9,11 @@ import {
   openCard,
   closeOpenCards,
   setCardsMatched,
+  gameIsWon,
 } from "../../MemoryGame.utils";
 import Memorycard from "../Memorycard";
 import { memorySettings } from "../../MemoryGame.interface";
+import CongratsModal from "../CongratsModal";
 
 interface GamePageProps {
   memorySettings: memorySettings;
@@ -22,6 +24,7 @@ export default function GamePage({
 }: GamePageProps): JSX.Element {
   const classes = useStyles();
   const [deck, setDeck] = useState<MemoryCard[]>();
+  const [congratsModalIsOpen, setCongratsModalIsOpen] = useState(false);
 
   useEffect(() => {
     const memoryService = new MemoryService();
@@ -40,13 +43,16 @@ export default function GamePage({
         }
         setDeck(closeOpenCards(deck));
       }
-
       setDeck(openCard(card, deck));
+      if (gameIsWon(deck)) {
+        setCongratsModalIsOpen(true);
+      }
     }
   }
 
   return (
     <>
+      <CongratsModal isOpen={congratsModalIsOpen} />
       <div className={classes.cardGrid}>
         {deck ? (
           <div className={classes.cardGrid}>

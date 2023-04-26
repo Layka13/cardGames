@@ -35,7 +35,7 @@ export default function StartPage({
     <div className={classes.startPage}>
       <Heading variant={"Large"}>Start new game</Heading>
       <Slider
-        min={0}
+        min={1}
         max={13}
         valueLabelDisplay="auto"
         mb="20px"

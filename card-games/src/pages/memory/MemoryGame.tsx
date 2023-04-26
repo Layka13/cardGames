@@ -6,7 +6,6 @@ import { defaultDifficulty, memorySettings } from "./MemoryGame.interface";
 
 export default function Memory(): JSX.Element {
   const [gameStarted, setGameStarted] = useState(false);
-
   const [memorySettings, setMemorySettings] = useState<memorySettings>({
     difficulty: defaultDifficulty,
   });

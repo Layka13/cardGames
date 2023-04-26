@@ -51,10 +51,22 @@ function filterUnmatchedCards(deck: MemoryCard[]): MemoryCard[] {
   return deck.filter((card) => card.matched === false);
 }
 
+function gameIsWon(deck: MemoryCard[]): boolean {
+  if (
+    filterUnmatchedCards(deck).length > 2 ||
+    filterOpenCards(deck).length !== 2
+  ) {
+    return false;
+  }
+  return true;
+}
+
 export {
   cardsMatch,
   setCardsMatched,
   filterOpenCards,
   openCard,
   closeOpenCards,
+  gameIsWon,
+  filterUnmatchedCards,
 };
