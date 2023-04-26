@@ -18,7 +18,6 @@ export default function MemoryCard({
     <div
       className={classes.playingCard}
       onClick={() => {
-        console.log(card);
         onClick(card);
       }}
     >

@@ -1,6 +1,6 @@
 import { MemoryCard } from "../../implementations/services/memoryService/memoryService.interface";
 
-function checkIfCardsMatch(cards: MemoryCard[]): boolean {
+function cardsMatch(cards: MemoryCard[]): boolean {
   return cards[0].code === cards[1].code;
 }
 
@@ -13,7 +13,7 @@ function updateDeck(cards: MemoryCard[], deck: MemoryCard[]): MemoryCard[] {
   return newDeck;
 }
 
-function setCardsAreMatched(
+function setCardsMatched(
   cards: MemoryCard[],
   deck: MemoryCard[],
 ): MemoryCard[] {
@@ -35,9 +35,16 @@ function setCardsAreFlippedToBack(
   return updateDeck(matchedCards, deck);
 }
 
+function filterFlippedCards(deck: MemoryCard[]): MemoryCard[] {
+  return deck.filter(
+    (card) => card.isRightSideUp === true && card.matched === false,
+  );
+}
+
 export {
-  checkIfCardsMatch,
+  cardsMatch,
   updateDeck,
-  setCardsAreMatched,
+  setCardsMatched,
   setCardsAreFlippedToBack,
+  filterFlippedCards,
 };
