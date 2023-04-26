@@ -20,6 +20,19 @@ export class DeckRepository {
     }
   }
 
+  public async getPartialDeck(cardCodes: string[]): Promise<any> {
+    const cardsString = cardCodes.join(",");
+
+    try {
+      const data = await http<DeckResponse>(
+        `https://deckofcardsapi.com/api/deck/new/shuffle/?cards=${cardsString}`,
+      );
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   public async drawCard(deckId: string, amount?: number): Promise<any> {
     if (!amount) amount = 1;
 
