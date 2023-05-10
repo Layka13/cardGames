@@ -1,8 +1,8 @@
-export enum SUITES {
-  "HEARTS",
-  "SPADES",
-  "CLUBS",
-  "DIAMONDS",
+export enum SUITS {
+  "HEARTS" = "H",
+  "SPADES" = "S",
+  "CLUBS" = "C",
+  "DIAMONDS" = "D",
 }
 
 export enum VALUES {
@@ -30,7 +30,7 @@ export interface Icard {
     png: string;
   };
   value: VALUES;
-  suit: SUITES;
+  suit: SUITS;
 }
 
 export const backImage = "https://deckofcardsapi.com/static/img/back.png";

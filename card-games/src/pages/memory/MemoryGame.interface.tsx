@@ -1,5 +1,9 @@
+import { SUITS } from "../../interfaces/Icards";
+
 export interface memorySettings {
-  difficulty: number;
+  suits: SUITS[];
+  numberOfCards: number;
 }
 
-export const defaultDifficulty: number = 5;
+export const defaultNumberOfCards = 5;
+export const defaultSuits = [];

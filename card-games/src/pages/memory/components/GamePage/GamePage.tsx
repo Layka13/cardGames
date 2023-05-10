@@ -17,10 +17,12 @@ import CongratsModal from "../CongratsModal";
 
 interface GamePageProps {
   memorySettings: memorySettings;
+  setGameStarted: Function;
 }
 
 export default function GamePage({
   memorySettings,
+  setGameStarted,
 }: GamePageProps): JSX.Element {
   const classes = useStyles();
   const [deck, setDeck] = useState<MemoryCard[]>();
@@ -29,7 +31,7 @@ export default function GamePage({
   useEffect(() => {
     const memoryService = new MemoryService();
     async function fetchCards() {
-      setDeck(await memoryService.getNewGame(memorySettings.difficulty));
+      setDeck(await memoryService.getNewGame(memorySettings));
     }
     fetchCards();
   }, [memorySettings]);
@@ -52,7 +54,10 @@ export default function GamePage({
 
   return (
     <>
-      <CongratsModal isOpen={congratsModalIsOpen} />
+      <CongratsModal
+        isOpen={congratsModalIsOpen}
+        setGameStarted={setGameStarted}
+      />
       <div className={classes.cardGrid}>
         {deck ? (
           <div className={classes.cardGrid}>

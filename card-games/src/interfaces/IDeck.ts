@@ -13,11 +13,23 @@ export interface DeckResponse {
   [key: string]: any;
 }
 
+export const allCardValues = [
+  "2",
+  "3",
+  "4",
+  "5",
+  "6",
+  "7",
+  "8",
+  "9",
+  "0",
+  "A",
+  "J",
+  "K",
+  "Q",
+];
+
 export const allCardCodes = [
-  "0C",
-  "0D",
-  "0H",
-  "0S",
   "2C",
   "2D",
   "2H",
@@ -50,6 +62,10 @@ export const allCardCodes = [
   "9D",
   "9H",
   "9S",
+  "0C",
+  "0D",
+  "0H",
+  "0S",
   "AC",
   "AD",
   "AH",

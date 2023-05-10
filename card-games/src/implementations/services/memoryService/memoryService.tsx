@@ -3,13 +3,20 @@ import { DeckRepository } from "../../repository/deckRepository";
 import { Icard } from "../../../interfaces/Icards";
 import { Ideck } from "../../../interfaces/IDeck";
 import { nanoid } from "nanoid";
-import { getCardCodes } from "../sharedService";
+import { getCardValues, getSelectedCards } from "../sharedService";
+import { memorySettings } from "../../../pages/memory/MemoryGame.interface";
 
 export class MemoryService {
-  readonly numberOfSuits = 4;
   readonly numberOfDecks = 2;
-  public async getNewGame(difficulty: number): Promise<MemoryCard[]> {
-    const cardCodes = getCardCodes(difficulty * this.numberOfSuits);
+  public async getNewGame(
+    memorySettings: memorySettings,
+  ): Promise<MemoryCard[]> {
+    console.log("in memoryService", memorySettings);
+    const cardCodes = getSelectedCards(
+      getCardValues(memorySettings.numberOfCards),
+      memorySettings.suits,
+    );
+    console.log("cardcodes", cardCodes);
 
     const deckRepository = new DeckRepository();
     const deck: Ideck = await deckRepository.getPartialDeck(

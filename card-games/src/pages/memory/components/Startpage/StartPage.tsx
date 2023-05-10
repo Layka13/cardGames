@@ -1,11 +1,18 @@
 import {
   Button,
+  Card,
+  Checkbox,
+  CheckboxGroup,
   Heading,
-  Label,
+  Paragraph,
   Slider,
 } from "@nn-design-system/react-component-library";
 import { useStyles } from "../../MemoryGame.style";
-import { defaultDifficulty, memorySettings } from "../../MemoryGame.interface";
+import {
+  defaultNumberOfCards,
+  memorySettings,
+} from "../../MemoryGame.interface";
+import { SUITS } from "../../../../interfaces/Icards";
 
 interface StartPageProps {
   setGameStarted: Function;
@@ -24,25 +31,52 @@ export default function StartPage({
     setGameStarted(true);
   }
 
-  function setDifficulty(value: number) {
+  function setSuits(selectedValues: string[]) {
     setMemorySettings((old: memorySettings) => ({
       ...old,
-      difficulty: value,
+      suits: selectedValues,
     }));
   }
 
+  function setNumberOfCards(value: number) {
+    console.log("in setNumberOfCards", value);
+
+    setMemorySettings((old: memorySettings) => ({
+      ...old,
+      numberOfCards: value,
+    }));
+  }
   return (
     <div className={classes.startPage}>
       <Heading variant={"Large"}>Start new game</Heading>
-      <Slider
-        min={1}
-        max={13}
-        valueLabelDisplay="auto"
-        mb="20px"
-        defaultValue={defaultDifficulty}
-        onChange={(e, range) => setDifficulty(range as number)}
-      />
-      <Button onClick={handleClick}>Start</Button>
+
+      <Card mb="5px">
+        <CheckboxGroup
+          labelText="Select suits"
+          onChange={(value) => setSuits(value)}
+          value={memorySettings.suits}
+          variant="Default"
+        >
+          <Checkbox labelText="Hearts" value={SUITS.HEARTS} />
+          <Checkbox labelText="Spades" value={SUITS.SPADES} />
+          <Checkbox labelText="Clubs" value={SUITS.CLUBS} />
+          <Checkbox labelText="Diamonds" value={SUITS.DIAMONDS} />
+        </CheckboxGroup>
+
+        <Paragraph mb="10px">Number of cards per suit</Paragraph>
+        <Slider
+          defaultValue={defaultNumberOfCards}
+          value={memorySettings.numberOfCards}
+          valueLabelDisplay="auto"
+          min={1}
+          max={13}
+          onChange={(e, range) => setNumberOfCards(range as number)}
+        />
+      </Card>
+
+      <Button onClick={handleClick} mt="20px">
+        Start
+      </Button>
     </div>
   );
 }
