@@ -11,12 +11,10 @@ export class MemoryService {
   public async getNewGame(
     memorySettings: memorySettings,
   ): Promise<MemoryCard[]> {
-    console.log("in memoryService", memorySettings);
     const cardCodes = getSelectedCards(
       getCardValues(memorySettings.numberOfCards),
       memorySettings.suits,
     );
-    console.log("cardcodes", cardCodes);
 
     const deckRepository = new DeckRepository();
     const deck: Ideck = await deckRepository.getPartialDeck(

@@ -1,4 +1,4 @@
-import { Heading } from "@nn-design-system/react-component-library";
+import { Button, Heading } from "@nn-design-system/react-component-library";
 import { useStyles } from "../../MemoryGame.style";
 import { MemoryCard } from "../../../../implementations/services/memoryService/memoryService.interface";
 import { useEffect, useState } from "react";
@@ -52,12 +52,25 @@ export default function GamePage({
     }
   }
 
+  const updateGameStarted = () => {
+    setGameStarted(false);
+  };
+
   return (
     <>
       <CongratsModal
         isOpen={congratsModalIsOpen}
         setGameStarted={setGameStarted}
       />
+      <Button
+        testId="button"
+        variant="Secondary"
+        onClick={updateGameStarted}
+        ml="20px"
+        mb="20px"
+      >
+        I give up
+      </Button>
       <div className={classes.cardGrid}>
         {deck ? (
           <div className={classes.cardGrid}>
