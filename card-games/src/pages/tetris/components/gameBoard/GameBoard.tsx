@@ -26,7 +26,7 @@ export default function GameBoard({ gameState }: GameBoardProps): JSX.Element {
                         point,
                       )
                     ) {
-                      style.backgroundColor = "red";
+                      style.backgroundColor = gameState.currentTetromino.color;
                     }
 
                     return (

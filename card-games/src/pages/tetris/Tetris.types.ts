@@ -7,8 +7,10 @@ export type GameState = {
 };
 
 export type Tetromino = {
+  type: string;
   currentPosition: Position;
   initialPosition: Position;
+  color: string;
 };
 
 export type Position = [Point, Point, Point, Point];
