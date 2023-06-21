@@ -26,6 +26,23 @@ export default function Tetris(): JSX.Element {
     startGame();
   }, []);
 
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      console.log(e);
+      if (e.code === "ArrowLeft") {
+        e.preventDefault();
+        setGameState((old) => moveTetromino(old, moveDirections.left));
+      }
+      if (e.code === "ArrowRight") {
+        setGameState((old) => moveTetromino(old, moveDirections.right));
+      }
+    };
+    document.addEventListener("keydown", handleKeyDown, false);
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown, false);
+    };
+  });
+
   return (
     <>
       <Heading variant="XXLCentered">Tetris</Heading>
